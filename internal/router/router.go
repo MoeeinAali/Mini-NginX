@@ -17,13 +17,9 @@ func Handle(conn net.Conn, cfg *config.Config) {
 		return
 	}
 	parts := strings.Split(line, " ")
-	if len(parts) != 2 {
-		return
-	}
 	method := parts[0]
 	path := parts[1]
-	logger.Info("request method: %s, path: %s", method, path)
-
+	logger.Info(fmt.Sprintf("request method: %s, path: %s", method, path))
 	for route, rule := range cfg.Paths {
 		if strings.HasPrefix(path, route) {
 			logger.Info("route matched", "route", route, "type", rule.Type)
