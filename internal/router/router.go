@@ -30,7 +30,7 @@ func Handle(conn net.Conn, cfg *config.Config) {
 			case "staticfile":
 				handlers.StaticFile(conn, rule.Target)
 			case "servedir":
-				handlers.ServeDir(conn, rule.Target)
+				handlers.ServeDir(conn, rule.Target, route, path)
 			case "reverseproxy":
 				handlers.ReverseProxy(conn, reader, rule.Target, line)
 			default:
