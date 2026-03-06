@@ -31,7 +31,6 @@ func Handle(conn net.Conn, cfg *config.Config) {
 			switch rule.Type {
 			case "redirect":
 				handlers.Redirect(conn, rule.Target)
-
 			case "staticfile":
 				handlers.StaticFile(conn, rule.Target)
 			case "servedir":
