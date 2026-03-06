@@ -1,6 +1,7 @@
 package logger
 
 import (
+	"io"
 	"log"
 	"os"
 )
@@ -8,11 +9,12 @@ import (
 var l *log.Logger
 
 func Init(file string) {
-	f, err := os.OpenFile(file, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	f, err := os.OpenFile(file, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0644)
 	if err != nil {
 		panic(err)
 	}
-	l = log.New(f, "", log.LstdFlags)
+	mw := io.MultiWriter(os.Stdout, f)
+	l = log.New(mw, "", log.LstdFlags)
 }
 
 func Info(msg string, kv ...interface{}) {
