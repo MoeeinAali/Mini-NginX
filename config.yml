@@ -1,0 +1,14 @@
+listen-on: 8080
+paths:
+  "/api/":
+    type: reverseproxy
+    target: "localhost:3000"
+  "/":
+    type: redirect
+    target: "http://localhost:8080/index.html"
+  "/api-test-V2-1.pdf":
+    type: staticfile
+    target: "~/Downloads/api-test-V2-1.pdf"
+  "/downloads":
+    type: servedir
+    target: "~/Downloads"
