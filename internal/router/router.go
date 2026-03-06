@@ -42,6 +42,6 @@ func Handle(conn net.Conn, cfg *config.Config) {
 
 func write404(conn net.Conn) {
 	body := "404 not found"
-	resp := fmt.Sprintf("HTTP/1.1 404 Not Found\r\nContent-Length: %d\r\n\r\n", len(body), body)
+	resp := fmt.Sprintf("HTTP/1.1 404 Not Found\r\nContent-Length: %d\r\n\r\n%s", len(body), body)
 	conn.Write([]byte(resp))
 }
