@@ -42,22 +42,24 @@ func ServeDir(conn net.Conn, dir string, route string, requestPath string) {
 		for _, e := range entries {
 			name := e.Name()
 			link := requestPath + name
-			var entryType, icon string
+			var entryType, icon, itemClass string
 
 			if e.IsDir() {
 				link = link + "/"
 				entryType = "Folder"
 				icon = "📁"
+				itemClass = "entry-item folder-item"
 			} else {
 				entryType = "File"
 				icon = "📄"
+				itemClass = "entry-item file-item"
 			}
 
 			entriesHTML.WriteString(fmt.Sprintf(`
-					<li><a href="%s" class="entry-item">
+					<li><a href="%s" class="%s">
                     <span class="entry-icon">%s</span>
                     <span class="entry-name">%s</span>
-                    <span class="entry-type">%s</span></a></li>`, link, icon, escapeHTML(name), entryType))
+                    <span class="entry-type">%s</span></a></li>`, link, itemClass, icon, escapeHTML(name), entryType))
 		}
 		entriesHTML.WriteString(`</ul>`)
 	}
