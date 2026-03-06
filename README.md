@@ -19,6 +19,40 @@ It is designed as a learning-friendly, minimal implementation of core reverse-pr
 
 ## Architecture
 
+### Component Diagram
+
+```mermaid
+graph TD
+    A["Client Requests<br/>(HTTP Clients)"]
+    B["TCP Listener<br/>(internal/server)<br/>Port: 8080"]
+    C["Connection Handler<br/>(goroutine/conn)"]
+    D["Router<br/>(internal/router)<br/>• Parse request line<br/>• Match route prefix<br/>• Select handler"]
+    
+    E[" Redirect Handler<br/>→ 302 Found"]
+    F["ReverseProxy Handler<br/>→ Forward to backend"]
+    G["StaticFile Handler<br/>→ Serve File"]
+    H["DirServe Handler<br/>→ HTML listing"]
+    
+    I["Backend TCP<br/>(external service)"]
+    J["HTTP Response<br/>to Client"]
+    
+    A -->|accepts| B
+    B -->|per conn| C
+    C --> D
+    D -->|type: redirect| E
+    D -->|type: reverseproxy| F
+    D -->|type: staticfile| G
+    D -->|type: servedir| H
+    
+    E --> J
+    F --> I
+    I -->|response| J
+    G --> J
+    H --> J
+```
+
+### Runtime Flow
+
 The runtime flow is intentionally simple and layered:
 
 1. **Bootstrap** (`cmd/server/main.go`)
