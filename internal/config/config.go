@@ -7,7 +7,7 @@ import (
 )
 
 type Config struct {
-	ListenOn int              `yaml:"listen_on"`
+	ListenOn int              `yaml:"listen-on"`
 	Paths    map[string]Route `yaml:"paths"`
 }
 
@@ -26,5 +26,6 @@ func Load(path string) (*Config, error) {
 	if err := yaml.Unmarshal(data, &cfg); err != nil {
 		return nil, err
 	}
+
 	return &cfg, nil
 }
