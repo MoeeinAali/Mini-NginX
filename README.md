@@ -17,6 +17,10 @@ It is designed as a learning-friendly, minimal implementation of core reverse-pr
 - Basic structured logging to console and `server.log`
 - No external web framework
 
+#### Servedir Picture:
+
+![](static/img.png)
+
 ## Architecture
 
 ### Component Diagram
@@ -189,4 +193,3 @@ go build -o mini-nginx ./cmd/server
 - Route matching is prefix-based via `strings.HasPrefix`.
 - `server.log` is truncated on each startup.
 - Error handling and security hardening are intentionally minimal for simplicity.
-
