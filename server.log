@@ -1,7 +1,116 @@
-2026/03/06 14:34:06 Server Starting port 8080
-2026/03/06 14:34:09 Connection accepted remote 127.0.0.1:49432
-2026/03/06 14:34:09 request method: GET, path: /chat/2
-2026/03/06 14:34:09 route matched route /chat/ type reverseproxy
-2026/03/06 14:34:10 Connection accepted remote 127.0.0.1:49446
-2026/03/06 14:34:10 request method: GET, path: /chat/2
-2026/03/06 14:34:10 route matched route /chat/ type reverseproxy
+2026/03/06 16:36:18 Server Starting port 8080
+2026/03/06 16:36:25 Connection accepted remote 127.0.0.1:52930
+2026/03/06 16:36:26 request method: GET, path: /downloads/
+2026/03/06 16:36:26 route matched route /downloads/ type servedir
+2026/03/06 16:36:26 Connection accepted remote 127.0.0.1:52935
+2026/03/06 16:36:26 request method: GET, path: /static/style.css
+2026/03/06 16:36:26 route matched route /static/ type servedir
+2026/03/06 16:36:26 Connection accepted remote 127.0.0.1:52936
+2026/03/06 16:36:26 request method: GET, path: /favicon.ico
+2026/03/06 16:36:26 Connection accepted remote 127.0.0.1:52937
+2026/03/06 16:36:26 request method: GET, path: /favicon.ico
+2026/03/06 16:36:26 Connection accepted remote 127.0.0.1:52938
+2026/03/06 16:36:26 request method: GET, path: /favicon.ico
+2026/03/06 16:36:26 Connection accepted remote 127.0.0.1:52939
+2026/03/06 16:36:26 request method: GET, path: /favicon.ico
+2026/03/06 16:36:26 Connection accepted remote 127.0.0.1:52940
+2026/03/06 16:36:26 request method: GET, path: /favicon.ico
+2026/03/06 16:36:26 Connection accepted remote 127.0.0.1:52941
+2026/03/06 16:36:26 request method: GET, path: /favicon.ico
+2026/03/06 16:36:26 Connection accepted remote 127.0.0.1:52942
+2026/03/06 16:36:26 request method: GET, path: /favicon.ico
+2026/03/06 16:36:26 Connection accepted remote 127.0.0.1:52943
+2026/03/06 16:36:26 request method: GET, path: /favicon.ico
+2026/03/06 16:36:26 Connection accepted remote 127.0.0.1:52944
+2026/03/06 16:36:26 request method: GET, path: /favicon.ico
+2026/03/06 16:36:26 Connection accepted remote 127.0.0.1:52945
+2026/03/06 16:36:26 request method: GET, path: /favicon.ico
+2026/03/06 16:36:27 Connection accepted remote 127.0.0.1:52946
+2026/03/06 16:36:33 Connection accepted remote 127.0.0.1:52947
+2026/03/06 16:36:38 Connection accepted remote 127.0.0.1:52948
+2026/03/06 16:36:40 request method: GET, path: /downloads/1080827649_2018772575/
+2026/03/06 16:36:40 route matched route /downloads/ type servedir
+2026/03/06 16:36:40 Connection accepted remote 127.0.0.1:52949
+2026/03/06 16:36:40 request method: GET, path: /static/style.css
+2026/03/06 16:36:40 route matched route /static/ type servedir
+2026/03/06 16:36:40 Connection accepted remote 127.0.0.1:52950
+2026/03/06 16:36:40 request method: GET, path: /favicon.ico
+2026/03/06 16:36:40 Connection accepted remote 127.0.0.1:52951
+2026/03/06 16:36:40 request method: GET, path: /favicon.ico
+2026/03/06 16:36:40 Connection accepted remote 127.0.0.1:52952
+2026/03/06 16:36:40 request method: GET, path: /favicon.ico
+2026/03/06 16:36:40 Connection accepted remote 127.0.0.1:52953
+2026/03/06 16:36:40 request method: GET, path: /favicon.ico
+2026/03/06 16:36:40 Connection accepted remote 127.0.0.1:52954
+2026/03/06 16:36:40 request method: GET, path: /favicon.ico
+2026/03/06 16:36:40 Connection accepted remote 127.0.0.1:52955
+2026/03/06 16:36:40 request method: GET, path: /favicon.ico
+2026/03/06 16:36:40 Connection accepted remote 127.0.0.1:52956
+2026/03/06 16:36:40 request method: GET, path: /favicon.ico
+2026/03/06 16:36:40 Connection accepted remote 127.0.0.1:52957
+2026/03/06 16:36:40 request method: GET, path: /favicon.ico
+2026/03/06 16:36:40 Connection accepted remote 127.0.0.1:52958
+2026/03/06 16:36:40 request method: GET, path: /favicon.ico
+2026/03/06 16:36:40 Connection accepted remote 127.0.0.1:52959
+2026/03/06 16:36:40 request method: GET, path: /favicon.ico
+2026/03/06 16:36:40 Connection accepted remote 127.0.0.1:52960
+2026/03/06 16:36:41 request method: GET, path: /favicon.ico
+2026/03/06 16:36:41 Connection accepted remote 127.0.0.1:52961
+2026/03/06 16:36:41 request method: GET, path: /favicon.ico
+2026/03/06 16:36:41 Connection accepted remote 127.0.0.1:52962
+2026/03/06 16:36:41 request method: GET, path: /favicon.ico
+2026/03/06 16:36:41 Connection accepted remote 127.0.0.1:52963
+2026/03/06 16:36:41 request method: GET, path: /favicon.ico
+2026/03/06 16:36:41 Connection accepted remote 127.0.0.1:52964
+2026/03/06 16:36:41 request method: GET, path: /favicon.ico
+2026/03/06 16:36:41 Connection accepted remote 127.0.0.1:52965
+2026/03/06 16:36:41 request method: GET, path: /favicon.ico
+2026/03/06 16:36:41 Connection accepted remote 127.0.0.1:52966
+2026/03/06 16:36:41 request method: GET, path: /favicon.ico
+2026/03/06 16:36:41 Connection accepted remote 127.0.0.1:52967
+2026/03/06 16:36:41 request method: GET, path: /favicon.ico
+2026/03/06 16:36:41 Connection accepted remote 127.0.0.1:52968
+2026/03/06 16:36:41 request method: GET, path: /favicon.ico
+2026/03/06 16:36:41 Connection accepted remote 127.0.0.1:52969
+2026/03/06 16:36:41 request method: GET, path: /favicon.ico
+2026/03/06 16:36:42 Connection accepted remote 127.0.0.1:52970
+2026/03/06 16:36:42 request method: GET, path: /favicon.ico
+2026/03/06 16:36:42 Connection accepted remote 127.0.0.1:52971
+2026/03/06 16:36:42 request method: GET, path: /favicon.ico
+2026/03/06 16:36:42 Connection accepted remote 127.0.0.1:52972
+2026/03/06 16:36:42 request method: GET, path: /favicon.ico
+2026/03/06 16:36:42 Connection accepted remote 127.0.0.1:52973
+2026/03/06 16:36:42 request method: GET, path: /favicon.ico
+2026/03/06 16:36:42 Connection accepted remote 127.0.0.1:52974
+2026/03/06 16:36:42 request method: GET, path: /favicon.ico
+2026/03/06 16:36:42 Connection accepted remote 127.0.0.1:52975
+2026/03/06 16:36:42 request method: GET, path: /favicon.ico
+2026/03/06 16:36:42 Connection accepted remote 127.0.0.1:52976
+2026/03/06 16:36:42 request method: GET, path: /favicon.ico
+2026/03/06 16:36:42 Connection accepted remote 127.0.0.1:52977
+2026/03/06 16:36:42 request method: GET, path: /favicon.ico
+2026/03/06 16:36:42 Connection accepted remote 127.0.0.1:52978
+2026/03/06 16:36:42 request method: GET, path: /favicon.ico
+2026/03/06 16:36:42 Connection accepted remote 127.0.0.1:52979
+2026/03/06 16:36:42 request method: GET, path: /favicon.ico
+2026/03/06 16:36:43 Connection accepted remote 127.0.0.1:52980
+2026/03/06 16:36:43 request method: GET, path: /favicon.ico
+2026/03/06 16:36:43 Connection accepted remote 127.0.0.1:52981
+2026/03/06 16:36:43 request method: GET, path: /favicon.ico
+2026/03/06 16:36:43 Connection accepted remote 127.0.0.1:52982
+2026/03/06 16:36:43 request method: GET, path: /favicon.ico
+2026/03/06 16:36:43 Connection accepted remote 127.0.0.1:52983
+2026/03/06 16:36:43 request method: GET, path: /favicon.ico
+2026/03/06 16:36:43 Connection accepted remote 127.0.0.1:52984
+2026/03/06 16:36:43 request method: GET, path: /favicon.ico
+2026/03/06 16:36:43 Connection accepted remote 127.0.0.1:52985
+2026/03/06 16:36:43 request method: GET, path: /favicon.ico
+2026/03/06 16:36:43 Connection accepted remote 127.0.0.1:52986
+2026/03/06 16:36:43 request method: GET, path: /favicon.ico
+2026/03/06 16:36:43 Connection accepted remote 127.0.0.1:52987
+2026/03/06 16:36:43 request method: GET, path: /favicon.ico
+2026/03/06 16:36:43 Connection accepted remote 127.0.0.1:52988
+2026/03/06 16:36:43 request method: GET, path: /favicon.ico
+2026/03/06 16:36:43 Connection accepted remote 127.0.0.1:52989
+2026/03/06 16:36:43 request method: GET, path: /favicon.ico
+2026/03/06 16:36:44 Connection accepted remote 127.0.0.1:52995

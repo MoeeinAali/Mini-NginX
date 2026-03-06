@@ -1,5 +1,8 @@
 listen-on: 8080
 paths:
+  "/static/":
+    type: servedir
+    target: "/Users/moeein/Desktop/Mini-NginX/static/"
   "/go-to-google":
     type: redirect
     target: "https://google.com"
@@ -12,3 +15,5 @@ paths:
   "/downloads/":
     type: servedir
     target: "/Users/moeein/Downloads/"
+
+

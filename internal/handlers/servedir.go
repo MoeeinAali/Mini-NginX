@@ -32,26 +32,61 @@ func ServeDir(conn net.Conn, dir string, route string, requestPath string) {
 		return
 	}
 
-	var body strings.Builder
+	breadcrumb := "/" + strings.Trim(requestPath, "/")
 
-	body.WriteString("<html><body><h1>Directory listing</h1><ul>")
+	var entriesHTML strings.Builder
+	if len(entries) == 0 {
+		entriesHTML.WriteString(`<div class="empty-state"><p>📭 This directory is empty</p></div>`)
+	} else {
+		entriesHTML.WriteString(`<ul class="entries-list">`)
+		for _, e := range entries {
+			name := e.Name()
+			link := requestPath + name
+			var entryType, icon string
 
-	for _, e := range entries {
-		name := e.Name()
-		link := requestPath + name
+			if e.IsDir() {
+				link = link + "/"
+				entryType = "Folder"
+				icon = "📁"
+			} else {
+				entryType = "File"
+				icon = "📄"
+			}
 
-		if e.IsDir() {
-			link = link + "/"
-			name = name + "/"
+			entriesHTML.WriteString(fmt.Sprintf(`
+					<li><a href="%s" class="entry-item">
+                    <span class="entry-icon">%s</span>
+                    <span class="entry-name">%s</span>
+                    <span class="entry-type">%s</span></a></li>`, link, icon, escapeHTML(name), entryType))
 		}
-
-		body.WriteString(fmt.Sprintf(`<li><a href="%s">%s</a></li>`, link, name))
+		entriesHTML.WriteString(`</ul>`)
 	}
-	body.WriteString("</ul></body></html>")
+
+	templatePath := "static/dirlist.html"
+	templateData, err := os.ReadFile(templatePath)
+	if err != nil {
+		body := "error loading template"
+		resp := fmt.Sprintf("HTTP/1.1 500 Internal Server Error\r\nContent-Length: %d\r\n\r\n%s", len(body), body)
+		conn.Write([]byte(resp))
+		return
+	}
+
+	html := string(templateData)
+	html = strings.ReplaceAll(html, "{{BREADCRUMB}}", escapeHTML(breadcrumb))
+	html = strings.ReplaceAll(html, "{{ENTRIES}}", entriesHTML.String())
 
 	resp := fmt.Sprintf(
-		"HTTP/1.1 200 OK\r\nContent-Length: %d\r\nContent-Type: text/html\r\n\r\n%s", len(body.String()), body.String())
+		"HTTP/1.1 200 OK\r\nContent-Length: %d\r\nContent-Type: text/html; charset=utf-8\r\n\r\n%s", len(html), html)
 	conn.Write([]byte(resp))
+}
+
+func escapeHTML(s string) string {
+	s = strings.ReplaceAll(s, "&", "&amp;")
+	s = strings.ReplaceAll(s, "<", "&lt;")
+	s = strings.ReplaceAll(s, ">", "&gt;")
+	s = strings.ReplaceAll(s, "\"", "&quot;")
+	s = strings.ReplaceAll(s, "'", "&#39;")
+	return s
 }
 
 func write404(conn net.Conn) {
