@@ -11,18 +11,23 @@ import (
 )
 
 func Handle(conn net.Conn, cfg *config.Config) {
+	remote := conn.RemoteAddr().String()
 	reader := bufio.NewReader(conn)
 	line, err := reader.ReadString('\n')
 	if err != nil {
 		return
 	}
-	parts := strings.Split(line, " ")
+
+	parts := strings.SplitN(strings.TrimSpace(line), " ", 3)
+	if len(parts) < 2 {
+		return
+	}
 	method := parts[0]
-	path := parts[1]
-	logger.Info(fmt.Sprintf("request method: %s, path: %s", method, path))
+	reqPath := parts[1]
+
 	for route, rule := range cfg.Paths {
-		if strings.HasPrefix(path, route) {
-			logger.Info("route matched", "route", route, "type", rule.Type)
+		if strings.HasPrefix(reqPath, route) {
+			logger.Access(remote, method, reqPath, fmt.Sprintf("handler=%s route=%q", rule.Type, route))
 
 			switch rule.Type {
 			case "redirect":
@@ -30,14 +35,18 @@ func Handle(conn net.Conn, cfg *config.Config) {
 			case "staticfile":
 				handlers.StaticFile(conn, rule.Target)
 			case "servedir":
-				handlers.ServeDir(conn, rule.Target, route, path)
+				handlers.ServeDir(conn, rule.Target, route, reqPath)
 			case "reverseproxy":
 				handlers.ReverseProxy(conn, reader, rule.Target, line)
 			default:
 				write404(conn)
 			}
+			return
 		}
 	}
+
+	logger.Access(remote, method, reqPath, "handler=none status=404")
+	write404(conn)
 }
 
 func write404(conn net.Conn) {

@@ -26,7 +26,7 @@ func (s *Server) Start() error {
 		if err != nil {
 			continue
 		}
-		logger.Info("Connection accepted", "remote", conn.RemoteAddr().String())
+		logger.Debug("connection", "remote", conn.RemoteAddr().String())
 		go handle(conn, s.cfg)
 	}
 }
