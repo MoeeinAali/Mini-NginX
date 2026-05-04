@@ -3,13 +3,22 @@ package handlers
 import (
 	"fmt"
 	"net"
+	"net/url"
 	"os"
+	"path"
 	"path/filepath"
 	"strings"
 )
 
 func ServeDir(conn net.Conn, dir string, route string, requestPath string) {
-	rel := strings.TrimPrefix(requestPath, route)
+	decodedPath, err := url.PathUnescape(requestPath)
+	if err != nil {
+		write404(conn)
+		return
+	}
+
+	rel := strings.TrimPrefix(decodedPath, route)
+	rel = strings.TrimPrefix(rel, "/")
 	fsPath := filepath.Join(dir, rel)
 
 	info, err := os.Stat(fsPath)
@@ -32,7 +41,14 @@ func ServeDir(conn net.Conn, dir string, route string, requestPath string) {
 		return
 	}
 
-	breadcrumb := "/" + strings.Trim(requestPath, "/")
+	breadcrumb := "/" + strings.Trim(decodedPath, "/")
+
+	parent := decodedPath
+	if !strings.HasSuffix(parent, "/") {
+		parent += "/"
+	}
+	parentBase := strings.TrimSuffix(parent, "/")
+	parentEnc := encodeURLPathSegments(parentBase)
 
 	var entriesHTML strings.Builder
 	if len(entries) == 0 {
@@ -41,7 +57,7 @@ func ServeDir(conn net.Conn, dir string, route string, requestPath string) {
 		entriesHTML.WriteString(`<ul class="entries-list">`)
 		for _, e := range entries {
 			name := e.Name()
-			link := requestPath + name
+			link := parentEnc + "/" + url.PathEscape(name)
 			var entryType, icon, itemClass string
 
 			if e.IsDir() {
@@ -80,6 +96,22 @@ func ServeDir(conn net.Conn, dir string, route string, requestPath string) {
 	resp := fmt.Sprintf(
 		"HTTP/1.1 200 OK\r\nContent-Length: %d\r\nContent-Type: text/html; charset=utf-8\r\n\r\n%s", len(html), html)
 	conn.Write([]byte(resp))
+}
+
+func encodeURLPathSegments(decoded string) string {
+	decoded = path.Clean("/" + decoded)
+	segs := strings.Split(strings.Trim(decoded, "/"), "/")
+	if len(segs) == 1 && segs[0] == "" {
+		return "/"
+	}
+	esc := make([]string, 0, len(segs))
+	for _, s := range segs {
+		if s == "" {
+			continue
+		}
+		esc = append(esc, url.PathEscape(s))
+	}
+	return "/" + strings.Join(esc, "/")
 }
 
 func escapeHTML(s string) string {

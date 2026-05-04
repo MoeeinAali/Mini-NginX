@@ -2,7 +2,7 @@ listen-on: 8080
 paths:
   "/static/":
     type: servedir
-    target: "/Users/moeein/Desktop/Mini-NginX/static/"
+    target: "./static/"
   "/go-to-google":
     type: redirect
     target: "https://google.com"
